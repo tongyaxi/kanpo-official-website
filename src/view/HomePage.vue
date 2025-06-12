@@ -1,629 +1,451 @@
 <template>
   <div id="HomePage">
-    <!-- 轮播图 -->
-    <div id="swiper" class="container-fuild">
-      <div class="swiper-container banner-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(item,index) in swiperList" :key="index">
-            <img class="swiper-lazy" :data-src="item.img" alt="轮播图">
-            <div class="swiper-lazy-preloader"></div>
-            <div class="swiper-slide-title">
-                <h1>{{item.title}}</h1>
-                <p>{{item.content}}</p>
-            </div>
-          </div>
-        </div>
-        <!-- 如果需要分页器 -->
-        <div class="swiper-pagination"></div>
-
-        <!-- 如果需要导航按钮 -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-      </div>
-    </div>
-    <!-- 大数据管理系统 -->
-    <div id="bigData" class="container-fuild">
-      <div class="row bigData-container">
-        <div class="col-xs-12 col-sm-12 col-md-6 wow zoomIn">
-          <img class="img-responsive" src="@/assets/img/img1.png" alt="大数据管理系统">
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6">
-          <h2 class="bigData-title">
-            大数据管理系统
-            <small>/ Big Data Management System</small>
-          </h2>
-          <p>当今最领先的响应式自助建站平台。无论您是普通互联网用户，还是专业网站制作人员，都能使用起飞页设计出最具专业水准的网站。想创建一个简单的单页式站点，还是一个专业的公司网站，亦或是一个别具一格的博客？起飞页可以满足您的所有需求。</p>
-          <p>我们的流线式网页布局设计方案和可视化图文内容编辑模式让网站制作和维护成为一件轻松惬意的事。无论您是普通互联网用户，还是专业网站制作人员。</p>
-          <h2 class="bigData-device">PC/PAD/Phone &nbsp; 全设备支持</h2>
-          <a href="#" class="btn btn-lg btn-block btn-info">联系我们</a>
-        </div>
-      </div>
-    </div>
-    <!-- 您身边的IT专家 -->
-    <div id="contactUs" class="container-fuild text-center">
-      <div class="container contactUs-container wow slideInUp">
-        <h1>您身边的IT专家</h1>
-        <h3>7x24小时提供出色的IT服务</h3>
-        <button
-          class="btn btn-default btn-sm"
-          onmouseleave="this.style.borderColor='#ffffff'; this.style.backgroundColor='#ffffff'; this.style.color='#3f3f3f';"
-          onmouseenter="this.style.backgroundColor='transparent'; this.style.borderColor='#ffffff'; this.style.color='#ffffff';"
-        >联系我们</button>
-        <div class="contactUs-contactWay">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div>
-    <!-- 客户评价 -->
-    <div id="customer" class="container-fuild">
-      <div class="container customer-container">
-        <p class="customer-title text-center">客户评价</p>
-        <div class="swiper-container customer-swiper hidden-xs">
-          <div class="swiper-wrapper">
-            <div
-              class="swiper-slide customer-block"
-              v-for="(item,index) in customerList"
-              :key="index"
-            >
-              <div class="customer-logo">
-                <img class="center-block" :src="item.logo" alt="logo">
-              </div>
-              <div class="customer-yh">
-                <img src="@/assets/img/yinhao.png" alt="引号">
-              </div>
-              <div class="customer-content1">
-                <small>{{item.content}}</small>
-              </div>
-              <div class="customer-content2">{{item.title}}</div>
-            </div>
-          </div>
-          <!-- 如果需要导航按钮 -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-        </div>
-        <div class="row visible-xs customer-block">
-          <div class="col-xs-12" v-for="(item,index) in customerList" :key="index">
-            <div class="customer-logo">
-              <img class="center-block" :src="item.logo" alt="logo">
-            </div>
-            <div class="customer-yh">
-              <img src="@/assets/img/yinhao.png" alt="引号">
-            </div>
-            <div class="customer-content1">
-              <small>{{item.content}}</small>
-            </div>
-            <div class="customer-content2">
-              <small>{{item.title}}</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- 为什么选择我们 -->
-    <div id="whyChooseUs" class="conatiner-fuild">
+    <!-- 事業内容・企業情報セクション -->
+    <div class="section-wrapper service-section">
       <div class="container">
-        <div class="whyChooseUs-title text-center">
-          <p>为什么选择我们的服务</p>
-          <p>THE REASON TO CHOOSING US</p>
-        </div>
-        <div class="row">
+        <div class="CompanyInformation-container row">
           <div
-            class="col-xs-12 col-sm-6 col-md-3 server-wrapper"
-            v-for="(item,index) in serverList"
+            class="CompanyInformation-item col-xs-12 col-sm-6 col-md-6 wow slideInUp"
+            v-for="(item, index) in serviceList"
             :key="index"
+            @click="ServiceClick(item.id)"
           >
-            <div
-              class="server-block wow slideInUp"
-              onmouseenter="this.style.color='#28f';this.style.borderColor='#28f'"
-              onmouseleave="this.style.color='#666';this.style.borderColor='#ccc'"
-            >
-              <img class="center-block" :src="item.logo" alt="logo">
-              <p class="text-center">{{item.title}}</p>
-              <div
-                class="text-center"
-                v-html="item.content"
-                onmouseenter="this.style.color='#28f'"
-                onmouseleave="this.style.color='#ccc'"
-              ></div>
+            <div class="CompanyInformation-item-wrapper">
+              <div class="CompanyInformation-item-img">
+                <img :src="item.img" :alt="item.title" />
+                <div class="overlay"></div>
+              </div>
+              <div class="CompanyInformation-item-content">
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.eng_title }}</p>
+                <div class="btn-more">詳細を見る</div>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新着情報セクション -->
+    <div class="section-wrapper news-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2>新着情報</h2>
+          <p>Company News</p>
+        </div>
+
+        <div class="news-list">
+          <div
+            v-for="(item, index) in newsList.slice(
+              0,
+              showAllNews ? newsList.length : 4
+            )"
+            :key="index"
+            class="news-item wow fadeIn"
+            data-wow-delay="0.2s"
+          >
+            <div class="news-date">
+              <span class="day">{{ item.date }}</span>
+              <span class="year">{{ item.year }}</span>
+            </div>
+            <div class="news-content">
+              <h4>{{ item.title }}</h4>
+              <p>{{ item.introduce }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn-view-all" @click="toggleNewsView">
+            {{ showAllNews ? "表示を減らす" : "ニュース一覧を見る" }}
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import Swiper from "swiper";
-import { WOW } from 'wowjs';
+import { WOW } from "wowjs";
 export default {
   name: "HomePage",
   data() {
     return {
-      swiperList: [
+      showAllNews: false,
+      serviceList: [
         {
-          img: require("@/assets/img/banner1.png"),
-          path: "",
-          title: '您身边的IT专家1',
-          content: '宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介',
+          id: "section-1",
+          title: "事業内容",
+          eng_title: "Business Services",
+          img: require("@/assets/img/businessServices.png"),
         },
         {
-          img: require("@/assets/img/banner2.jpg"),
-          path: "",
-          title: '您身边的IT专家2',
-          content: '宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介',
+          id: "section-2",
+          title: "企業情報",
+          eng_title: "Company Information",
+          img: require("@/assets/img/companyInformation.png"),
         },
-        {
-          img: require("@/assets/img/banner1.png"),
-          path: "",
-          title: '您身边的IT专家3',
-          content: '宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介',
-        },
-        {
-          img: require("@/assets/img/banner2.jpg"),
-          path: "",
-          title: '您身边的IT专家4',
-          content: '宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介宣传简介',
-        }
       ],
-      customerList: [
+      newsList: [
         {
-          logo: require("@/assets/img/logo_hp.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
+          id: "001",
+          title: "商標登録申請",
+          introduce:
+            "ブランドの信頼性向上と知的財産保護のため、商標登録の申請を行いました。",
+          date: "03",
+          year: "2025",
         },
         {
-          logo: require("@/assets/img/logo_kk.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
+          id: "002",
+          title: "Amazon店舗オーブン",
+          introduce:
+            "より多くのお客様に商品をお届けするため、Amazonに公式店舗をオープンいたしました。",
+          date: "11",
+          year: "2024",
         },
         {
-          logo: require("@/assets/img/logo_toyota.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
+          id: "003",
+          title: "管野文惠が代表取締役に就任",
+          introduce:
+            "2024年4月、管野文惠が新たに代表取締役に就任いたしました。今後とも変わらぬご支援を賜りますようお願い申し上げます。",
+          date: "04",
+          year: "2024",
         },
         {
-          logo: require("@/assets/img/logo_kk.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
+          id: "004",
+          title: "本社を神奈川県相模原市中央区へ移転",
+          introduce:
+            "業務拡大に伴い、本社を神奈川県相模原市中央区へ移転いたしました。",
+          date: "04",
+          year: "2024",
         },
         {
-          logo: require("@/assets/img/logo_hp.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
+          id: "005",
+          title: "楽天店舗オープン",
+          introduce:
+            "国内最大級のオンラインモール「楽天市場」にて、当社の公式ショップを開設しました。",
+          date: "08",
+          year: "2022",
         },
         {
-          logo: require("@/assets/img/logo_toyota.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
+          id: "006",
+          title: "会社設立",
+          introduce:
+            "「株式会社寛宝」は、2020年に設立されました。お客様の暮らしに寄り添う商品とサービスを提供してまいります。",
+          date: "07",
+          year: "2020",
         },
-        {
-          logo: require("@/assets/img/logo_kk.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
-        },
-        {
-          logo: require("@/assets/img/logo_hp.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
-        },
-        {
-          logo: require("@/assets/img/logo_toyota.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
-        },
-        {
-          logo: require("@/assets/img/logo_hp.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
-        },
-        {
-          logo: require("@/assets/img/logo_kk.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
-        },
-        {
-          logo: require("@/assets/img/logo_hp.png"),
-          title:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。",
-          content:
-            "您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。"
-        }
       ],
-      serverList: [
-        {
-          logo: require("@/assets/img/tel.png"),
-          title: "核心优势1",
-          content: "<p>由专业客服提供人工服务</p>负责疑难问题和故障受理"
-        },
-        {
-          logo: require("@/assets/img/computer.png"),
-          title: "核心优势2",
-          content: "<p>利用远程视频工具，提供协助</p>帮助客户进行调试、解决故障"
-        },
-        {
-          logo: require("@/assets/img/qq.png"),
-          title: "核心优势3",
-          content: "<p>利用企业QQ提供在线解答</p>帮助企业快速准确解决问题和故障"
-        },
-        {
-          logo: require("@/assets/img/skill.png"),
-          title: "核心优势4",
-          content: "<p>由技术支持工程师，负责问题解答</p>需求受理及故障受理"
-        }
-      ]
     };
   },
   mounted() {
-    /* banner-swiper */
-    new Swiper(".banner-swiper", {
-      loop: true, // 循环模式选项
-      effect: 'fade',
-      //自动播放
-      autoplay: {
-        delay: 3000,
-        stopOnLastSlide: false,
-        disableOnInteraction: false
-      },
-      // 如果需要分页器
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true
-      },
-      // 如果需要前进后退按钮
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      },
-      // 延迟加载
-      lazy: {
-        loadPrevNext: true
-      },
-      observer: true, //修改swiper自己或子元素时，自动初始化swiper
-      observeParents: true //修改swiper的父元素时，自动初始化swiper
-    });
-    /* customer-swiper */
-    new Swiper(".customer-swiper", {
-      loop: true, // 循环模式选项
-      slidesPerView: 3,
-      //自动播放
-      autoplay: {
-        delay: 3000,
-        stopOnLastSlide: false,
-        disableOnInteraction: false
-      },
-      // 如果需要前进后退按钮
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      },
-      observer: true, //修改swiper自己或子元素时，自动初始化swiper
-      observeParents: true //修改swiper的父元素时，自动初始化swiper
-    });
-    /* wowjs动画 */
-    var wow = new WOW({
-      boxClass: 'wow',
-      animateClass: 'animated',
-      offset: 0,
-      mobile: true,
-      live: true
-    })
-    wow.init();
-  }
+    this.initWow();
+  },
+  methods: {
+    initWow() {
+      new WOW({
+        boxClass: "wow",
+        animateClass: "animated",
+        offset: 100,
+        mobile: true,
+        live: true,
+      }).init();
+    },
+    ServiceClick(id) {
+      this.$router.push({
+        name: "companyinfodetail",
+        params: {
+          id: id,
+        },
+      });
+    },
+    toggleNewsView() {
+      this.showAllNews = !this.showAllNews;
+
+      // スムーズなスクロールを追加（オプション）
+      if (this.showAllNews) {
+        this.$nextTick(() => {
+          const el = document.querySelector(".news-list");
+          if (el) {
+            window.scrollTo({
+              top: el.offsetTop + el.clientHeight - window.innerHeight / 2,
+              behavior: "smooth",
+            });
+          }
+        });
+      }
+    },
+  },
 };
 </script>
 <style scoped>
-/* 整体盒子 */
+/* 共通スタイル */
 #HomePage {
   width: 100%;
+  color: #333;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
-/* 轮播图 */
-#swiper {
-  height: 600px;
+.section-wrapper {
+  padding: 80px 0;
 }
-#swiper .banner-swiper {
+
+.section-header {
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  font-size: 16px;
+  color: #707070;
+}
+
+/* サービスセクション */
+.service-section {
+  background-color: #f9f9f9;
+}
+
+.CompanyInformation-container {
+  margin-bottom: 30px;
+}
+
+.CompanyInformation-item {
+  margin-bottom: 30px;
+}
+
+.CompanyInformation-item-wrapper {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  height: 300px;
+}
+
+.CompanyInformation-item-wrapper:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.CompanyInformation-item-img {
   width: 100%;
-  height: 100%;
-}
-#swiper .banner-swiper .swiper-slide img {
-  width: 100%;
-  height: 100%;
-}
-#swiper .banner-swiper .swiper-slide{
+  height: 300px;
   position: relative;
 }
-#swiper .banner-swiper .swiper-slide-title {
+
+.CompanyInformation-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.CompanyInformation-item-img .overlay {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 999999999;
   width: 100%;
   height: 100%;
-  color: #fff;
-  background: rgba(51, 51, 51, 0.534);
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+}
+
+.CompanyInformation-item-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  color: white;
+  z-index: 2;
+}
+
+.CompanyInformation-item-content h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.CompanyInformation-item-content p {
+  font-size: 14px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+}
+
+.btn-more {
+  display: inline-block;
+  border: 2px solid white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.CompanyInformation-item-wrapper:hover .btn-more {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 新着情報セクション */
+.news-section {
+  background-color: white;
+}
+
+.news-list {
+  margin-bottom: 40px;
+}
+
+.news-item {
+  display: flex;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.news-item:hover {
+  color: #1e73be;
+}
+
+.news-date {
+  flex: 0 0 100px;
   text-align: center;
-  line-height: 80px;
+  border-right: 2px solid #1e73be;
+  padding-right: 20px;
+  margin-right: 20px;
 }
-#swiper .banner-swiper .swiper-slide-title > h1{
-  font-size: 50px;
-  margin-top: 12%;
-}
-#swiper .banner-swiper .swiper-slide-title > p{
-  font-size: 20px;
-  margin-top: 1%;
+
+.news-date .day {
+  display: block;
+  font-size: 24px;
   font-weight: 700;
 }
-/* 大数据管理系统 */
-#bigData {
-  padding: 100px;
-  transition: all ease 0.6s;
-  box-sizing: border-box;
-}
-#bigData .bigData-title {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ccc;
-}
-#bigData p {
+
+.news-date .year {
+  display: block;
   font-size: 14px;
-  color: #333;
-  line-height: 2rem;
-}
-#bigData .bigData-device {
-  margin: 50px 0 20px;
+  color: #707070;
 }
 
-/* 您身边的IT专家 */
-#contactUs {
-  color: #fff;
-  height: 400px;
-  background: url("../assets/img/contact_us_bg.jpg") 0 0 no-repeat;
-  background-size: 100% 100%;
-  transition: all ease 0.6s;
-}
-#contactUs .contactUs-container {
-  padding-top: 50px;
-}
-#contactUs .contactUs-container button {
-  width: 300px;
-  height: 50px;
-  margin-top: 40px;
-}
-#contactUs .contactUs-container .contactUs-contactWay span {
-  display: inline-block;
-  width: 48px;
-  height: 48px;
-  margin: 30px;
-}
-#contactUs .contactUs-container .contactUs-contactWay span:nth-of-type(1) {
-  background: url("../assets/img/weixin.png") 0 0 no-repeat;
-  background-size: 100% 100%;
-}
-#contactUs .contactUs-container .contactUs-contactWay span:nth-of-type(2) {
-  background: url("../assets/img/weibo.png") 0 0 no-repeat;
-  background-size: 100% 100%;
-}
-#contactUs .contactUs-container .contactUs-contactWay span:nth-of-type(3) {
-  background: url("../assets/img/twitter.png") 0 0 no-repeat;
-  background-size: 100% 100%;
+.news-content {
+  flex: 1;
 }
 
-/* 客户评价 */
-#customer {
-  padding: 50px 0;
-  box-sizing: border-box;
-  background: #efefef;
-  transition: all ease 0.6s;
+.news-content h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
-#customer .customer-title {
-  font-size: 30px;
-  color: rgb(102, 102, 102);
-  margin: 0 0 30px;
-}
-#customer .customer-block {
-  background: #fff;
-  padding: 30px;
-}
-#customer .customer-logo img {
-  width: 94px;
-  height: 94px;
-  border: 1px solid #ccc;
-}
-#customer .customer-yh img {
-  width: 34px;
-  height: 34px;
-}
-#customer .customer-content1 {
-  padding-bottom: 20px;
-  border-bottom: 1px solid #0ce9f1;
-}
-#customer .customer-content2 {
-  padding-top: 20px;
-}
-/* 为什么选择我们 */
-#whyChooseUs {
-  padding: 100px;
-}
-#whyChooseUs .whyChooseUs-title {
-  margin-bottom: 50px;
-}
-#whyChooseUs .whyChooseUs-title p:nth-of-type(1) {
-  font-size: 25px;
-  font-weight: 500;
-}
-#whyChooseUs .whyChooseUs-title p:nth-of-type(2) {
+
+.news-content p {
   font-size: 14px;
-}
-#whyChooseUs .server-block {
-  padding: 50px 20px;
-  border: 1px solid #ccc;
-  border-bottom: 5px solid #ccc;
-}
-#whyChooseUs .server-block img {
-  width: 48px;
-  height: 48px;
-}
-#whyChooseUs .server-block > p {
-  font-size: 20px;
-  margin: 30px 0;
-}
-#whyChooseUs .server-block > div {
-  color: #ccc;
-}
-/* 媒体查询（手机） */
-@media screen and (max-width: 768px) {
-  #swiper {
-    height: 200px;
-  }
-  #bigData {
-    padding: 30px;
-  }
-  #bigData .bigData-title {
-    font-size: 20px;
-  }
-  #bigData .bigData-device {
-    font-size: 20px;
-    margin: 10px 0 10px;
-  }
-  #contactUs {
-    height: 200px;
-    transition: all ease 0.6s;
-  }
-  #contactUs .contactUs-container {
-    padding-top: 0;
-  }
-  #contactUs .contactUs-container h1 {
-    font-size: 25px;
-  }
-  #contactUs .contactUs-container h3 {
-    font-size: 18px;
-  }
-  #contactUs .contactUs-container button {
-    width: 200px;
-    height: 30px;
-    margin-top: 20px;
-  }
-  #contactUs .contactUs-container .contactUs-contactWay span {
-    display: inline-block;
-    width: 28px;
-    height: 28px;
-    margin: 10px;
-  }
-  #customer {
-    padding: 30px 0;
-    box-sizing: border-box;
-    background: #fff;
-  }
-  #customer .customer-title {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  #customer .customer-logo img {
-    width: 48px;
-    height: 48px;
-  }
-  #customer .customer-block {
-    padding: 30px;
-  }
-  #customer .customer-block > div {
-    padding: 30px 0;
-  }
-  #whyChooseUs {
-    padding: 20px 0;
-    transition: all ease 0.6s;
-  }
-  #whyChooseUs .whyChooseUs-title p:nth-of-type(1) {
-    font-size: 20px;
-    font-weight: 700;
-  }
-  #whyChooseUs .whyChooseUs-title p:nth-of-type(2) {
-    font-size: 12px;
-  }
-  #whyChooseUs .server-block {
-    padding: 50px 0;
-    border: 1px solid #ccc;
-    border-bottom: 5px solid #ccc;
-  }
-  #whyChooseUs .server-block img {
-    width: 48px;
-    height: 48px;
-  }
-  #whyChooseUs .server-block > p {
-    font-size: 20px;
-    margin: 30px 0;
-  }
-  #whyChooseUs .server-block > div {
-    color: #ccc;
-  }
+  color: #666;
+  line-height: 1.6;
 }
 
-/* 媒体查询（平板） */
-@media screen and (min-width: 768px) and (max-width: 996px) {
-  #swiper {
-    height: 400px;
+.btn-view-all {
+  background: transparent;
+  border: 2px solid #1e73be;
+  color: #1e73be;
+  padding: 10px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn-view-all:hover {
+  background: #1e73be;
+  color: white;
+}
+
+/* モバイル対応のスタイル */
+@media (max-width: 767px) {
+  .section-wrapper {
+    padding: 40px 0;
   }
-  #bigData {
-    padding: 60px;
-  }
-  #bigData .bigData-title {
-    font-size: 30px;
-  }
-  #bigData .bigData-device {
-    font-size: 30px;
-    margin: 30px 0 15px;
-  }
-  #contactUs {
-    height: 300px;
-  }
-  #contactUs .contactUs-container {
-    padding-top: 50px;
-  }
-  #contactUs .contactUs-container h1 {
-    font-size: 30px;
-  }
-  #contactUs .contactUs-container h3 {
-    font-size: 20px;
-  }
-  #contactUs .contactUs-container button {
-    width: 300px;
-    height: 50px;
-    margin-top: 30px;
-  }
-  #contactUs .contactUs-container .contactUs-contactWay span {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    margin: 15px;
-  }
-  #customer .customer-title {
+
+  .section-header h2 {
     font-size: 24px;
   }
-  #whyChooseUs {
-    padding: 20px 0;
+
+  .section-header p {
+    font-size: 14px;
+  }
+
+  .CompanyInformation-item-content h3 {
+    font-size: 20px;
+  }
+
+  .CompanyInformation-item-content p {
+    font-size: 12px;
+  }
+
+  .news-item {
+    flex-direction: column;
+  }
+
+  .news-date {
+    flex: none;
+    border-right: none;
+    border-bottom: 1px solid #1e73be;
+    padding-right: 0;
+    margin-right: 0;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .news-date .day {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+
+  .news-content h4 {
+    font-size: 16px;
+  }
+
+  .btn-view-all {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+
+  .CompanyInformation-item-wrapper {
+    height: 220px;
+  }
+
+  .CompanyInformation-item-img {
+    height: 220px;
+  }
+
+  .CompanyInformation-item-content {
+    padding: 20px;
+  }
+
+  .btn-more {
+    opacity: 1;
+    transform: translateY(0);
+    font-size: 12px;
+    padding: 5px 15px;
+  }
+}
+
+@media (hover: none) {
+  .btn-more {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .CompanyInformation-item-wrapper:hover {
+    transform: none;
   }
 }
 </style>
-

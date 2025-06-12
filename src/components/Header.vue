@@ -1,41 +1,52 @@
 <template>
-  <!-- 头部整体盒子 -->
   <div id="header" class="container-fuild">
-    <!-- 电脑导航 -->
+    <!-- PC -->
     <div class="header-nav container hidden-xs">
-      <!-- 导航logo -->
+      <!-- 会社名 -->
       <div class="header-nav-logo">
-        <img src="@/assets/img/ChatGPT Image May 27, 2025, 11_59_20 PM.png">
+        <link
+          href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap"
+          rel="stylesheet"
+        />
+        <h1>株式会社寛宝</h1>
       </div>
-      <!-- 导航内容 -->
+      <!-- ナビ -->
       <ul class="header-nav-wrapper">
         <li
-          v-for="(item,index) in navList"
+          v-for="(item, index) in navList"
           :key="index"
-          :class="index==navIndex?'active':''"
-          @click="navClick(index,item.name)"
+          :class="index == navIndex ? 'active' : ''"
+          @click="navClick(index, item.name)"
         >
           <router-link :to="item.path">
-            {{item.name}}
-            <span v-if="item.children.length>0" class="glyphicon glyphicon-menu-down"></span>
+            {{ item.name }}
+            <span
+              v-if="item.children.length > 0"
+              class="glyphicon glyphicon-menu-down"
+            ></span>
             <i class="underline"></i>
           </router-link>
-          <dl v-if="item.children.length>0">
-            <dt v-for="(i,n) in item.children" :key="n">
-              <router-link :to="i.path">{{i.name}}</router-link>
+          <dl v-if="item.children.length > 0">
+            <dt v-for="(i, n) in item.children" :key="n">
+              <router-link :to="i.path">{{ i.name }}</router-link>
             </dt>
           </dl>
         </li>
       </ul>
     </div>
+
     <!-- 手机导航 -->
     <div class="header-nav-m container-fuild visible-xs">
       <div class="header-nav-m-logo">
-        <img class="center-block" src="@/assets/img/logo_black.png" alt="logo">
+        <link
+          href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap"
+          rel="stylesheet"
+        />
+        <h1>株式会社寛宝</h1>
       </div>
       <!-- 导航栏 -->
       <div class="header-nav-m-menu text-center">
-        {{menuName}}
+        {{ menuName }}
         <div
           class="header-nav-m-menu-wrapper"
           data-toggle="collapse"
@@ -47,15 +58,15 @@
         <!-- 导航内容 -->
         <ul id="menu" class="header-nav-m-wrapper collapse">
           <li
-            v-for="(item,index) in navList"
+            v-for="(item, index) in navList"
             :key="index"
-            :class="index==navIndex?'active':''"
-            @click="navClick(index,item.name)"
+            :class="index == navIndex ? 'active' : ''"
+            @click="navClick(index, item.name)"
             data-toggle="collapse"
             data-target="#menu"
           >
             <router-link :to="item.path">
-              {{item.name}}
+              {{ item.name }}
               <i class="underline"></i>
             </router-link>
           </li>
@@ -69,61 +80,39 @@ export default {
   name: "Header",
   data() {
     return {
-      navIndex: sessionStorage.getItem('navIndex') ? sessionStorage.getItem('navIndex') : 0,
-      menuName: "首页",
+      navIndex: sessionStorage.getItem("navIndex")
+        ? sessionStorage.getItem("navIndex")
+        : 0,
+      menuName: "HOME",
       menuClass: "glyphicon glyphicon-menu-down",
       navList: [
         {
-          name: "首页",
+          name: "HOME",
           path: "/",
-          children: []
+          children: [],
         },
         {
-          name: "软件产品",
-          path: "/software",
-          children: [
-            {
-              name: "智能小镇管理系统",
-              path: "/software/smartTown"
-            },
-            {
-              name: "大数据管理系统",
-              path: "/software/bigData"
-            }
-          ]
+          name: "事業内容",
+          path: "/businessdescription",
+          children: [],
         },
         {
-          name: "相关服务",
-          path: "/service",
-          children: []
+          name: "企業情報",
+          path: "/companyinformation",
+          children: [],
         },
         {
-          name: "新闻动态",
-          path: "/newsinformation",
-          children: []
-        },
-        {
-          name: "公司介绍",
-          path: "/companyintroduction",
-          children: []
-        },
-        {
-          name: "工作机会",
-          path: "/jobchance",
-          children: []
-        },
-        {
-          name: "联系我们",
+          name: "お問い合わせ",
           path: "/contactus",
-          children: []
-        }
-      ]
+          children: [],
+        },
+      ],
     };
   },
   methods: {
     navClick(index, name) {
       this.navIndex = index;
-      sessionStorage.setItem('navIndex',index)
+      sessionStorage.setItem("navIndex", index);
       this.menuName = name;
     },
     menuClick() {
@@ -132,8 +121,8 @@ export default {
       } else {
         this.menuClass = "glyphicon glyphicon-menu-down";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
@@ -157,13 +146,23 @@ export default {
 #header .header-nav {
   height: 110px;
 }
-/* 导航栏logo */
+
+/* 会社名 */
 #header .header-nav .header-nav-logo {
-  width: 100px;
+  width: 180px;
   height: 100%;
   float: left;
   position: relative;
 }
+#header .header-nav .header-nav-logo h1 {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 30px;
+  color: #000;
+  text-align: center;
+  line-height: 100px;
+  margin: 0;
+}
+
 /* 导航栏logo图片 */
 #header .header-nav .header-nav-logo img {
   width: 280px;
@@ -266,6 +265,7 @@ export default {
   cursor: pointer;
   background: #ccc;
 }
+
 @media screen and (max-width: 997px) {
   #header .header-nav-m {
     position: relative;
@@ -276,15 +276,13 @@ export default {
     position: relative;
   }
   /* 导航栏logo图片 */
-  #header .header-nav-m .header-nav-m-logo img {
-    width: 95px;
-    height: 45px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+  #header .header-nav-m .header-nav-m-logo h1 {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 30px;
+    color: #000;
+    text-align: center;
+    line-height: 100px;
+    margin: 0;
   }
   /* 导航栏  菜单容器 */
   #header .header-nav-m .header-nav-m-menu {

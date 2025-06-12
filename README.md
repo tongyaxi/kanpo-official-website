@@ -1,10 +1,10 @@
 # official-website
 
-> 响应式企业官方网站模板，使用vue全家桶开发
+> 株式会社寛宝ホームページ
 
 ## 技术要点
 
-``` bash
+```bash
 # bootstarp——整体框架，主要用到了栅格系统和一些组件
 
 # swiper——轮播插件
